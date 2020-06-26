@@ -52,7 +52,7 @@
 ;;
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
-(setq projectile-project-search-path '("~/repos" "~/repos/github" "~/repos/github/api" "~/repos/gitlab" "~/repos/personal"))
+(setq projectile-project-search-path '("~/repos" "~/repos/personal/haskell" "~/repos/github" "~/repos/github/api" "~/repos/gitlab" "~/repos/personal"))
 
 
 ;; means META-, opens localleader in INSERT mode
@@ -78,8 +78,10 @@
 ;; (Restart)
 
 (defun xx-go-mode-extras ()
-  "Set up eldoc function and enable eldoc-mode."
+  "tweak go mode"
 
+  (setq gofmt-command "goimports")
+  (add-hook 'before-save-hook 'gofmt-before-save)
   (dap-mode +1)
   (require 'dap-go)
   (dap-ui-mode 1)
