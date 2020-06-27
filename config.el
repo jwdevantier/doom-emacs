@@ -92,3 +92,8 @@
            "u" #'dap-hydra)))))
 
 (add-hook 'go-mode-hook 'xx-go-mode-extras)
+
+(when (string= (system-name) "pseudotop")
+  ; on ubuntu linux, prefer fdfind (package: fd-find) over fd
+  ; (if you still see an error, it's a caching thing, 'SPC p i' should invalidate the cache)
+  (setq doom-projectile-fd-binary (executable-find "fdfind")))
