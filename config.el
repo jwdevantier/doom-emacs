@@ -52,8 +52,11 @@
 ;;
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
-(setq projectile-project-search-path '("~/repos" "~/repos/personal/haskell" "~/repos/github" "~/repos/github/api" "~/repos/gitlab" "~/repos/personal"))
-
+(setq projectile-project-search-path
+      (pcase (system-name)
+        ("Jespers-MacBook-Pro.local"
+         '("~/repos" "~/repos/personal/haskell" "~/repos/github" "~/repos/github/api" "~/repos/gitlab" "~/repos/personal"))
+        (_ '("~/repos"))))
 
 ;; means META-, opens localleader in INSERT mode
 (setq doom-localleader-alt-key "M-,")
