@@ -89,6 +89,38 @@
          (:map (go-mode-map)
           (:prefix ("x" . "debug")
            "s" #'dap-debug
-           "u" #'dap-hydra)))))
+           "u" #'dap-hydra)
+          (:prefix ("p" . "go playground")
+           "n" #'go-playground)))))
 
 (add-hook 'go-mode-hook 'xx-go-mode-extras)
+
+(defun xx-go-playground-mode ()
+  "configure go-playground keybindings"
+  (map! (:localleader
+         (:map (go-mode-map)
+          (:prefix ("p" . "go playground")
+           "e" #'go-playground-exec
+           "E" #'go-playground-cmd
+           "q" #'go-playground-rm
+           "u" #'go-playground-upload
+           "d" #'go-playground-download)))))
+
+
+(add-hook 'go-playground-mode-hook 'xx-go-playground-mode)
+
+(defun py-enhance ()
+  (require 'poetry)
+  (require 'blacken)
+  (setq projectile-globally-ignored-files
+        '(".mypy_cache"
+          ".pytest_cache"))
+  (setq projectile-globally-ignored-directories
+        '(".git"
+          "__pycache__"))
+  (map! (:localleader
+         (:map (python-mode-map)
+          "p" #'poetry
+          "b" #'blacken-mode))))
+
+(add-hook 'python-mode-hook 'py-enhance)

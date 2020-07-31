@@ -51,3 +51,8 @@
 
 ;; For GO, delve (https://github.com/go-delve/delve) is needed.
 (package! dap-mode)
+
+(package! go-playground)
+
+(package! poetry)
+(package! blacken)
